@@ -6,10 +6,12 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/barcont/Escritorio/alura/java/hotel/challenge-one-alura-hotel-latam/lib/c3p0-0.9.5.4.jar"/>
 	<classpathentry kind="lib" path="/home/barcont/Escritorio/alura/java/hotel/challenge-one-alura-hotel-latam/lib/jcalendar-1.4.jar"/>
 	<classpathentry kind="lib" path="/home/barcont/Escritorio/alura/java/hotel/challenge-one-alura-hotel-latam/lib/jgoodies-common-1.2.0.jar"/>
 	<classpathentry kind="lib" path="/home/barcont/Escritorio/alura/java/hotel/challenge-one-alura-hotel-latam/lib/jgoodies-looks-2.4.1.jar"/>
 	<classpathentry kind="lib" path="/home/barcont/Escritorio/alura/java/hotel/challenge-one-alura-hotel-latam/lib/junit-4.6.jar"/>
+	<classpathentry kind="lib" path="/home/barcont/Escritorio/alura/java/hotel/challenge-one-alura-hotel-latam/lib/mchange-commons-java-0.2.16.jar"/>
 	<classpathentry kind="lib" path="/home/barcont/Escritorio/alura/java/hotel/challenge-one-alura-hotel-latam/lib/mysql-connector-j-8.0.32.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
