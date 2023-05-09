@@ -334,7 +334,7 @@ public class ReservasView extends JFrame {
 		
 		JOptionPane.showMessageDialog(contentPane, "Reserva guardada con exito");
 		
-		RegistroHuesped registroHuesped = new RegistroHuesped();
+		RegistroHuesped registroHuesped = new RegistroHuesped(nuevaReserva.getId());
 		registroHuesped.setVisible(true);
 		dispose();
 	}
