@@ -1,22 +1,22 @@
 package jdbc.modelo;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 public class Reserva {
 	private Integer id;
-	private Date fechaE;
-	private Date fechaS;
+	private LocalDate fechaE;
+	private LocalDate fechaS;
 	private String valor;
 	private String formaPago;
 	
-	public Reserva(Date fechaE, Date fechaS, String valor, String formaPago) {
+	public Reserva(LocalDate fechaE, LocalDate fechaS, String valor, String formaPago) {
 		this.fechaE = fechaE;
 		this.fechaS = fechaS;
 		this.valor = valor;
 		this.formaPago = formaPago;
 	}
 
-	public Reserva(Integer id, Date fechaE, Date fechaS, String valor, String formaPago) {
+	public Reserva(Integer id, LocalDate fechaE, LocalDate fechaS, String valor, String formaPago) {
 		this.id = id;
 		this.fechaE = fechaE;
 		this.fechaS = fechaS;
@@ -32,19 +32,19 @@ public class Reserva {
 		this.id = id;
 	}
 
-	public Date getFechaE() {
+	public LocalDate getFechaE() {
 		return fechaE;
 	}
 
-	public void setFechaE(Date fechaE) {
+	public void setFechaE(LocalDate fechaE) {
 		this.fechaE = fechaE;
 	}
 
-	public Date getFechaS() {
+	public LocalDate getFechaS() {
 		return fechaS;
 	}
 
-	public void setFechaS(Date fechaS) {
+	public void setFechaS(LocalDate fechaS) {
 		this.fechaS = fechaS;
 	}
 

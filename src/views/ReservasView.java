@@ -18,7 +18,7 @@ import jdbc.modelo.Reserva;
 import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
-import java.text.Format;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -29,7 +29,6 @@ import java.beans.PropertyChangeEvent;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
-
 
 @SuppressWarnings("serial")
 public class ReservasView extends JFrame {
@@ -78,9 +77,7 @@ public class ReservasView extends JFrame {
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setUndecorated(true);
-		
-
-		
+			
 		JPanel panel = new JPanel();
 		panel.setBorder(null);
 		panel.setBackground(Color.WHITE);
@@ -248,7 +245,6 @@ public class ReservasView extends JFrame {
 		lblSiguiente.setFont(new Font("Roboto", Font.PLAIN, 18));
 		lblSiguiente.setBounds(0, 0, 122, 35);
 		
-		
 		//Campos que guardaremos en la base de datos
 		txtFechaEntrada = new JDateChooser();
 		txtFechaEntrada.addPropertyChangeListener(new PropertyChangeListener() {
@@ -329,7 +325,8 @@ public class ReservasView extends JFrame {
 		String fechaeE = ((JTextField)txtFechaEntrada.getDateEditor().getUiComponent()).getText();
 		String fechaeS = ((JTextField)txtFechaSalida.getDateEditor().getUiComponent()).getText();
 		
-		Reserva nuevaReserva = new Reserva(java.sql.Date.valueOf(fechaeE), java.sql.Date.valueOf(fechaeS), txtValor.getText(), txtFormaPago.getSelectedItem().toString());
+		//Reserva nuevaReserva = new Reserva(java.sql.Date.valueOf(fechaeE), java.sql.Date.valueOf(fechaeS), txtValor.getText(), txtFormaPago.getSelectedItem().toString());
+		Reserva nuevaReserva = new Reserva(LocalDate.parse(fechaeE), LocalDate.parse(fechaeS), txtValor.getText(), txtFormaPago.getSelectedItem().toString());
 		reservaController.guardar(nuevaReserva);
 		
 		JOptionPane.showMessageDialog(contentPane, "Reserva guardada con exito");
@@ -360,6 +357,10 @@ public class ReservasView extends JFrame {
 			String valorTotal = Integer.toString(valor);
 			txtValor.setText("$ " + valorTotal);
 		}
+	}
+	
+	public void limpiarValor() {
+		txtValor.setText("");
 	}
 	
 	//Código que permite mover la ventana por la pantalla según la posición de "x" y "y"	
