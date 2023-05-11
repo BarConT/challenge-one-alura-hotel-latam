@@ -103,9 +103,6 @@ public class Busqueda extends JFrame {
 		panel.setFont(new Font("Roboto", Font.PLAIN, 16));
 		panel.setBounds(20, 169, 865, 328);
 		contentPane.add(panel);
-
-		
-		
 		
 		tbReservas = new JTable();
 		tbReservas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -279,6 +276,22 @@ public class Busqueda extends JFrame {
 		btnEditar.add(lblEditar);
 		
 		JPanel btnEliminar = new JPanel();
+		btnEliminar.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				int filaReserva = tbReservas.getSelectedRow();
+				if(filaReserva>=0) {
+					reserva = tbReservas.getValueAt(filaReserva, 0).toString();
+					int confirmar = JOptionPane.showConfirmDialog(null, "Borrar la reserva?");
+					if (confirmar==JOptionPane.YES_OPTION) {
+						String idReserva = tbReservas.getValueAt(filaReserva, 0).toString();
+						reservaController.eliminar(Integer.valueOf(idReserva));
+						JOptionPane.showMessageDialog(contentPane, "Registro eliminado");
+						limpiarTabla();
+						mostrarTablaReservas();
+					}
+				}
+			}
+		});
 		btnEliminar.setLayout(null);
 		btnEliminar.setBackground(new Color(12, 138, 199));
 		btnEliminar.setBounds(767, 508, 122, 35);

@@ -125,9 +125,21 @@ public class ReservaDAO {
 		    	statement.setString(4, formaDePago);
 		    	statement.setInt(5, id);
 				statement.execute();
-//				int updateCount = statement.getUpdateCount();
-//			    return updateCount;
 			}	
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public void eliminar(Integer id) {
+		ConnectionFactory factory = new ConnectionFactory();
+		final Connection con = factory.recuperaConexion();
+		try(con) {
+			final PreparedStatement statement = con.prepareStatement("DELETE FROM reservas WHERE id=?");
+			try(statement) {
+				statement.setInt(1, id);
+				statement.execute();
+			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}

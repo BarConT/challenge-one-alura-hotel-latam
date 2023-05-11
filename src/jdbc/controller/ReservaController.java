@@ -30,4 +30,8 @@ public class ReservaController {
 	public void modificar(LocalDate fechaE, LocalDate fechaS, String valor, String formaDePago, Integer id) {
 		this.reservaDAO.modificar(fechaE, fechaS, valor, formaDePago, id);
 	}
+	
+	public void eliminar(Integer id) {
+		this.reservaDAO.eliminar(id);
+	}
 }
