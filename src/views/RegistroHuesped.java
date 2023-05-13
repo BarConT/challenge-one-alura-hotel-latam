@@ -263,7 +263,7 @@ public class RegistroHuesped extends JFrame {
 		btnguardar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (txtFechaN.getDate() !=null && !txtNombre.equals("") && !txtApellido.equals("") && !txtTelefono.equals("")) {		
+				if (txtFechaN.getDate() !=null && !txtNombre.getText().equals("") && !txtApellido.getText().equals("") && !txtTelefono.getText().equals("")) {		
 					guardarHuesped();
 				} else {
 					JOptionPane.showMessageDialog(null, "Debes llenar todos los campos.");

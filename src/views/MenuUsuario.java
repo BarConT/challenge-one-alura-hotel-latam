@@ -156,6 +156,7 @@ public class MenuUsuario extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.exit(0);
+				
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {

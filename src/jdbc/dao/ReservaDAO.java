@@ -46,7 +46,7 @@ public class ReservaDAO {
 	}
 	
 	public List<Reserva> listar() {
-		List<Reserva> resultado = new ArrayList<>();
+		List<Reserva> listaReservas = new ArrayList<>();
 		ConnectionFactory factory = new ConnectionFactory();
 		final Connection con = factory.recuperaConexion();
 		
@@ -58,26 +58,16 @@ public class ReservaDAO {
 				statement.execute();
 				
 				final ResultSet resultSet = statement.getResultSet();
-				try(resultSet) {
-					while (resultSet.next()) {
-						int id = resultSet.getInt("id");
-						LocalDate fechaEntrada = resultSet.getDate("fecha_entrada").toLocalDate();
-						LocalDate fechaSalida = resultSet.getDate("fecha_salida").toLocalDate();
-						String valor = resultSet.getString("valor");
-						String formaDePago = resultSet.getString("forma_de_pago");
-						Reserva fila = new Reserva(id, fechaEntrada, fechaSalida, valor, formaDePago);
-						resultado.add(fila);
-					}
-				}
+				transformarResultado(listaReservas, resultSet);
 			}
-			return resultado;
+			return listaReservas;
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}
 	
 	public List<Reserva> listarPorId(String id) {
-		List<Reserva> resultado = new ArrayList<>();
+		List<Reserva> listaReservas = new ArrayList<>();
 		ConnectionFactory factory = new ConnectionFactory();
 		final Connection con = factory.recuperaConexion();
 		
@@ -90,19 +80,9 @@ public class ReservaDAO {
 				statement.execute();
 				
 				final ResultSet resultSet = statement.getResultSet();
-				try(resultSet) {
-					while (resultSet.next()) {
-						int id1 = resultSet.getInt("id");
-						LocalDate fechaEntrada = (LocalDate) resultSet.getObject("fecha_salida");
-						LocalDate fechaSalida = (LocalDate) resultSet.getObject("fecha_salida");
-						String valor = resultSet.getString("valor");
-						String formaDePago = resultSet.getString("forma_de_pago");
-						Reserva fila = new Reserva(id1, fechaEntrada, fechaSalida, valor, formaDePago);
-						resultado.add(fila);
-					}
-				}
+				transformarResultado(listaReservas, resultSet);
 			}
-			return resultado;
+			return listaReservas;
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -145,4 +125,17 @@ public class ReservaDAO {
 		}
 	}
 	
+	private void transformarResultado(List<Reserva> listaReservas, ResultSet resultSet) throws SQLException {
+		try(resultSet) {
+			while (resultSet.next()) {
+				int id = resultSet.getInt("id");
+				LocalDate fechaEntrada = resultSet.getDate("fecha_entrada").toLocalDate();
+				LocalDate fechaSalida = resultSet.getDate("fecha_salida").toLocalDate();
+				String valor = resultSet.getString("valor");
+				String formaDePago = resultSet.getString("forma_de_pago");
+				Reserva fila = new Reserva(id, fechaEntrada, fechaSalida, valor, formaDePago);
+				listaReservas.add(fila);
+			}
+		}
+	}
 }

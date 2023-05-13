@@ -21,6 +21,19 @@ public class Huesped {
 		this.idReserva = idReserva;
 	}
 
+	public Huesped(Integer id, String nombre, String apellido, LocalDate fechaNacimiento, String nacionalidad,
+			String telefono, Integer idReserva) {
+		this.id = id;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.fechaNacimiento = fechaNacimiento;
+		this.nacionalidad = nacionalidad;
+		this.telefono = telefono;
+		this.idReserva = idReserva;
+	}
+
+
+
 	public Integer getId() {
 		return id;
 	}
