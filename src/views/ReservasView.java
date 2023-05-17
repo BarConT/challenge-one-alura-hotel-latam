@@ -124,7 +124,7 @@ public class ReservasView extends JFrame {
 		panel.add(lblFormaPago);
 		
 		JLabel lblTitulo = new JLabel("SISTEMA DE RESERVAS");
-		lblTitulo.setBounds(109, 60, 219, 42);
+		lblTitulo.setBounds(78, 58, 269, 42);
 		lblTitulo.setForeground(new Color(12, 138, 199));
 		lblTitulo.setFont(new Font("Roboto", Font.BOLD, 20));
 		panel.add(lblTitulo);
@@ -163,8 +163,8 @@ public class ReservasView extends JFrame {
 		btnexit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				MenuPrincipal principal = new MenuPrincipal();
-				principal.setVisible(true);
+				MenuPrincipal menu = new MenuPrincipal();
+				menu.setVisible(true);
 				dispose();
 			}
 			@Override
@@ -254,7 +254,7 @@ public class ReservasView extends JFrame {
 				}
 			}
 		});
-		txtFechaEntrada.getCalendarButton().setBackground(SystemColor.textHighlight);
+		txtFechaEntrada.getCalendarButton().setBackground(new Color(12, 138, 199));
 		txtFechaEntrada.getCalendarButton().setIcon(new ImageIcon(ReservasView.class.getResource("/imagenes/icon-reservas.png")));
 		txtFechaEntrada.getCalendarButton().setFont(new Font("Roboto", Font.PLAIN, 12));
 		txtFechaEntrada.setBounds(68, 161, 289, 35);
@@ -279,7 +279,7 @@ public class ReservasView extends JFrame {
 			}
 		});
 		txtFechaSalida.setDateFormatString("yyyy-MM-dd");
-		txtFechaSalida.getCalendarButton().setBackground(SystemColor.textHighlight);
+		txtFechaSalida.getCalendarButton().setBackground(new Color(12, 138, 199));
 		txtFechaSalida.setBorder(new LineBorder(new Color(255, 255, 255), 0));
 		panel.add(txtFechaSalida);
 
@@ -287,7 +287,7 @@ public class ReservasView extends JFrame {
 		txtValor.setBackground(SystemColor.text);
 		txtValor.setHorizontalAlignment(SwingConstants.CENTER);
 		txtValor.setForeground(Color.BLACK);
-		txtValor.setBounds(78, 328, 43, 33);
+		txtValor.setBounds(78, 328, 100, 33);
 		txtValor.setEditable(false);
 		txtValor.setFont(new Font("Roboto Black", Font.BOLD, 17));
 		txtValor.setBorder(javax.swing.BorderFactory.createEmptyBorder());
@@ -315,22 +315,26 @@ public class ReservasView extends JFrame {
 			}						
 		});
 		btnsiguiente.setLayout(null);
-		btnsiguiente.setBackground(SystemColor.textHighlight);
+		btnsiguiente.setBackground(new Color(12, 138, 199));
 		btnsiguiente.setBounds(238, 493, 122, 35);
 		panel.add(btnsiguiente);
 		btnsiguiente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+		
+		JLabel labelContinuar = new JLabel("CONTINUAR");
+		labelContinuar.setHorizontalAlignment(SwingConstants.CENTER);
+		labelContinuar.setForeground(Color.WHITE);
+		labelContinuar.setFont(new Font("Dialog", Font.PLAIN, 18));
+		labelContinuar.setBounds(0, 0, 122, 35);
+		btnsiguiente.add(labelContinuar);
 	}
 	
 	private void guardarReserva() {
 		String fechaeE = ((JTextField)txtFechaEntrada.getDateEditor().getUiComponent()).getText();
 		String fechaeS = ((JTextField)txtFechaSalida.getDateEditor().getUiComponent()).getText();
 		
-		//Reserva nuevaReserva = new Reserva(java.sql.Date.valueOf(fechaeE), java.sql.Date.valueOf(fechaeS), txtValor.getText(), txtFormaPago.getSelectedItem().toString());
 		Reserva nuevaReserva = new Reserva(LocalDate.parse(fechaeE), LocalDate.parse(fechaeS), txtValor.getText(), txtFormaPago.getSelectedItem().toString());
 		reservaController.guardar(nuevaReserva);
-		
-		JOptionPane.showMessageDialog(contentPane, "Reserva guardada con exito");
-		
+				
 		RegistroHuesped registroHuesped = new RegistroHuesped(nuevaReserva.getId());
 		registroHuesped.setVisible(true);
 		dispose();

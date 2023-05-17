@@ -90,6 +90,29 @@ final private Connection con;
 		}
 	}
 	
+	public List<Huesped> listarPorApellido(String apellido) {
+		List<Huesped> listaHuespedes = new ArrayList<>();
+		ConnectionFactory factory = new ConnectionFactory();
+		final Connection con = factory.recuperaConexion();
+		
+		try(con) {
+			String query = "SELECT id, nombre, apellido, fecha_nac, nacionalidad, telefono, id_reserva FROM huespedes WHERE apellido LIKE ?";
+			final PreparedStatement statement = con
+					.prepareStatement(query);
+			try(statement) {
+				statement.setString(1, "%" + apellido + "%");
+				statement.execute();
+				
+				final ResultSet resultSet = statement.getResultSet();
+				transformarResultado(listaHuespedes, resultSet);
+			}
+			return listaHuespedes;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	
 	public void modificar(String nombre, String apellido, LocalDate fechaNacimiento, String nacionalidad,
 			String telefono, Integer idReserva, Integer id) {
 		ConnectionFactory factory = new ConnectionFactory();

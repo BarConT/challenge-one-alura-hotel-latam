@@ -27,6 +27,10 @@ public class HuespedController {
 		return this.huespedDAO.listarPorId(id);
 	}
 	
+	public List<Huesped> listarPorApellido(String apellido) {
+		return this.huespedDAO.listarPorApellido(apellido);
+	}
+	
 	public void modificar(String nombre, String apellido, LocalDate fechaNacimiento, String nacionalidad,
 			String telefono, Integer idReserva, Integer id) {
 		this.huespedDAO.modificar(nombre, apellido, fechaNacimiento, nacionalidad, telefono, idReserva, id);
